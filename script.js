@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
     gsap.from(".line5 p", { opacity: 0, y: 50, duration: 1, delay: 2.5, ease: "power2.out" });
     gsap.from(".line6 p", { opacity: 0, y: 50, duration: 1, delay: 3, ease: "power2.out" });
     gsap.from(".FAQS", { opacity: 0, y: 50, duration: 1, delay: 3.5, ease: "power2.out" });
+    gsap.from(".Contact-us", { opacity: 0, y: 50, duration: 1, delay: 4, ease: "power2.out" });
 
     gsap.from(".container", { opacity: 0, scale: 0.8, duration: 1.5, delay: 2, ease: "power2.out" });
     gsap.from("table tbody tr", { opacity: 0, y: 30, duration: 1, stagger: 0.3, delay: 2.5 });

@@ -14,9 +14,9 @@
         <div class="logo">Contestify</div>
         <nav class="navigation">
           <ul>
-            <li><a href="#home">Home</a></li>
+            <li><a href="index.html">Home</a></li>
           <li><a href="contests.html">Contest</a></li>
-          <li><a href="#notify">Notify</a></li>
+          <li><a href="notify.html">Notify</a></li>
           <li><a href="login.html">Login</a></li>
           <li><a href="signup.html">Sign in</a></li>
         </ul>
@@ -111,10 +111,33 @@
             <dt class="question">How do I access the leaderboards?</dt>
             <dd class="answer">You can access the leaderboards by clicking on the "Leaderboards" tab within the Contestify Extension. This section will show your ranking and performance across different contests and platforms.</dd>
           </div>
+          <div class="FAQ">
+            <dt class="question">How do I subscribe to email updates?</dt>
+            <dd class="answer">To subscribe to email updates, go to the extension settings and enter your email address in the subscription section. You will receive regular emails with contest reminders and updates.</dd>
+          </div>
+          <div class="FAQ">
+            <dt class="question">Is my data secure with Contestify?</dt>
+            <dd class="answer">Absolutely. Contestify prioritizes your privacy and data security. We do not store your personal information or track your browsing activity beyond the functionality required to deliver contest updates and notifications.</dd>
+          </div>
         </div>
       </section>
 
+      <div class="Contact-us">
+        <h2>Contact Us</h2>
+        <form id="contactForm">
+            <label for="name">NAME</label>
+            <input type="text" id="name" placeholder="Your Name" required>
 
+            <label for="email">EMAIL</label>
+            <input type="email" id="email" placeholder="Your Email" required>
+
+            <label for="message">MESSAGE</label>
+            <textarea id="message" placeholder="Your Message" required></textarea>
+
+            <button type="submit">Send Message</button>
+        </form>
+        <p id="responseMessage"></p>
+      </div>
 
 
 

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notification Preferences</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000000;
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #1DB954; /* Spotify Green */
+            padding: 15px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            color: #ffffff;
+        }
+
+        /* Container for preferences */
+        .container {
+            padding: 20px;
+        }
+
+        /* Section Styles */
+        .section {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #222222;
+            border-radius: 8px;
+        }
+
+        .section h2 {
+            color: #1DB954; /* Spotify Green */
+        }
+
+        .section p {
+            margin: 10px 0;
+        }
+
+        .section input[type="checkbox"] {
+            margin-right: 10px;
+        }
+
+        .btn {
+            background-color: #1DB954; /* Spotify Green */
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .btn:hover {
+            background-color: #1aa34a; /* Darker green on hover */
+        }
+
+        /* Feedback styles */
+        .feedback {
+            margin-top: 15px;
+            color: #1DB954; /* Spotify Green */
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Notifiy</h1>
+    </header>
+
+    <div class="container">
+        <div class="section">
+            <h2>WhatsApp Notifications</h2>
+            <p>Receive coding contest notifications through WhatsApp.</p>
+            <label for="whatsapp-checkbox">
+                <input type="checkbox" id="whatsapp-checkbox" name="whatsapp">
+                Enable WhatsApp Notifications
+            </label>
+            <br>
+            <button class="btn" onclick="savePreference('WhatsApp')">Save WhatsApp Preference</button>
+            <p id="whatsapp-feedback" class="feedback"></p>
+        </div>
+
+        <div class="section">
+            <h2>Calendar Notifications</h2>
+            <p>Receive coding contest notifications on your mobile calendar.</p>
+            <label for="calendar-checkbox">
+                <input type="checkbox" id="calendar-checkbox" name="calendar">
+                Enable Calendar Notifications
+            </label>
+            <br>
+            <button class="btn" onclick="savePreference('Calendar')">Save Calendar Preference</button>
+            <p id="calendar-feedback" class="feedback"></p>
+        </div>
+    </div>
+
+    <script>
+        function savePreference(type) {
+            let feedbackElement = document.getElementById(type.toLowerCase() + '-feedback');
+            let checkbox = document.getElementById(type.toLowerCase() + '-checkbox');
+            
+            if (checkbox.checked) {
+                feedbackElement.textContent = type + ' notifications have been enabled.';
+            } else {
+                feedbackElement.textContent = type + ' notifications have been disabled.';
+            }
+        }
+    </script>
+
+</body>
+</html>
