@@ -261,7 +261,7 @@ function render() {
                 var temp = `
 				<div class="tableitem" style="display: flex; align-items: center; justify-content: space-between; padding: 0.5rem; font-size: 0.75rem; border: 1px solid #464646; border-radius: 0.375rem; margin: 0.5rem 0;">
                     <a href="${contest.href}" target="_blank" style="display: flex; align-items: center; width: 100%; gap: 0.5rem; color: white;">
-                        <img style="width: 32px; height: 32px;" src="/images/platforms/${logo.get(contest.resource)}" alt="png">
+                        <img style="width: 32px; height: 32px;" src="images/platforms/${logo.get(contest.resource)}" alt="png">
                         <div class="details" style="display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; width: 100%; font-weight: 300;">
                             <div style="display: flex; flex-direction: column; gap: 0.5rem;">
                                 <span style="text-transform: uppercase; font-weight: 600;">${platform.get(contest.resource)}</span>
@@ -311,7 +311,7 @@ function render() {
                 var temp = `
 				<div class="tableitem" style="display: flex; align-items: center; justify-content: between padding: 1rem; margin-top: 2rem; margin-bottom: 2rem;">
 					<a href="${contest.href}" target="_blank" class="flex items-center justify-start w-full gap-2" style="display: flex; align-items: center; width: 100%; color: white;">
-						<img style="width: 32px; height: 32px;" src="/images/platforms/${logo.get(contest.resource)}" alt="png">
+						<img style="width: 32px; height: 32px;" src="images/platforms/${logo.get(contest.resource)}" alt="png">
 						<div class="details flex items-center justify-between gap-2 text-xs font-light w-full" style="display: flex; align-items: center; justify-content: between; gap: 1rem; width: 100%">
 							<div class="flex flex-col gap-2">
 								<span class="uppercase font-semibold" style="color: white !important;">${platform.get(contest.resource)}</span>
@@ -363,7 +363,7 @@ function render() {
                 var temp = `
 				<div class="tableitem" style="display: flex; align-items: center; justify-content: space-between; padding: 0.5rem; font-size: 0.75rem; border: 1px solid #464646; border-radius: 0.375rem; margin: 0.5rem 0;">
                     <a href="${contest.href}" target="_blank" style="display: flex; align-items: center; width: 100%; text-decoration: none; gap: 0.5rem; color: white;">
-                        <img style="width: 32px; height: 32px;" src="/images/platforms/${logo.get(contest.resource)}" alt="png">
+                        <img style="width: 32px; height: 32px;" src="images/platforms/${logo.get(contest.resource)}" alt="png">
                         <div class="details" style="display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; width: 100%;">
                             <div style="display: flex; flex-direction: column; gap: 0.5rem;">
                                 <span style="text-transform: uppercase; font-weight: 600; color: #0c9e41;">${platform.get(contest.resource)}</span>
@@ -501,7 +501,7 @@ function fetchAlarm() {
         temp += `
             <div class="tableitem" style="display: flex; align-items: center; justify-content: space-between; padding: 1rem; font-size: 12px; border: 1px solid #464646; border-radius: 6px; margin-top: 2rem; margin-bottom: 2rem;">
                 <a href="${iddata.get(id)[1]}" target="_blank" style="display: flex; align-items: center; width: 100%; text-decoration: none; gap: 8px;">
-                    <img style="width: 32px; height: 32px;" src="/images/platforms/${logo.get(iddata.get(id)[4])}" alt="platform logo">
+                    <img style="width: 32px; height: 32px;" src="images/platforms/${logo.get(iddata.get(id)[4])}" alt="platform logo">
                     <div class="details" style="display: flex; align-items: flex-end; justify-content: space-between; gap: 8px; width: 100%; font-size: 12px; font-weight: 300; color: white;">
                         <div style="display: flex; flex-direction: column; gap: 4px;">
                             <span style="text-transform: uppercase; font-weight: 600; color: green;">${platform.get(iddata.get(id)[4])}</span>
@@ -624,7 +624,7 @@ function createalarm(id) {
 function createnotification(id) {
     chrome.notifications.create("" + id, {
         type: 'basic',
-        iconUrl: `images/${logo.get(iddata.get(id)[4])}`,
+        iconUrl: `images/platforms/${logo.get(iddata.get(id)[4])}`,
         title: iddata.get(id)[4],
         message: iddata.get(id)[0],
         priority: 2,

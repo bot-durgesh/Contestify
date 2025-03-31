@@ -1,68 +1,142 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-        <!-- General Meta Tags -->
-        <meta name="description"
-            content="Contestify is a productivity tool for competitive programmers. Enhance your coding experience and efficiency.">
-        <meta name="keywords"
-            content="contestify, productivity, tool, competitive, programming, coding, efficiency">
-        <meta name="author" content="Contestify Team">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-        <!-- Open Graph Meta Tags for social media -->
-        <meta property="og:title"
-            content="Contestify | Productivity Tool for Competitive Programmers">
-        <meta property="og:description"
-            content="Contestify is a productivity tool for competitive programmers. Enhance your coding experience and efficiency.">
-        <meta property="og:image" content>
-        <meta property="og:url" content>
-        <meta property="og:type" content="website">
+    <!-- General Meta Tags -->
+    <meta name="description"
+        content="Contestify is a productivity tool for competitive programmers. Enhance your coding experience and efficiency.">
+    <meta name="keywords" content="contestify, productivity, tool, competitive, programming, coding, efficiency">
+    <meta name="author" content="Contestify Team">
 
-        <!-- Twitter Meta Tags -->
-        <meta name="twitter:card" content="summary_large_image">
-        <meta name="twitter:title"
-            content="Contestify | Productivity Tool for Competitive Programmers">
-        <meta name="twitter:description"
-            content="Contestify is a productivity tool for competitive programmers. Enhance your coding experience and efficiency.">
-        <meta name="twitter:image" content>
-        <meta name="twitter:site" content="@yourtwitterhandle">
+    <!-- Open Graph Meta Tags for social media -->
+    <meta property="og:title" content="Contestify | Productivity Tool for Competitive Programmers">
+    <meta property="og:description"
+        content="Contestify is a productivity tool for competitive programmers. Enhance your coding experience and efficiency.">
+    <meta property="og:image" content>
+    <meta property="og:url" content>
+    <meta property="og:type" content="website">
 
-        <!-- Styles -->
-        <link rel="stylesheet" href="style.css">
-        <link rel="stylesheet" href="contests.css">
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Contestify | Productivity Tool for Competitive Programmers">
+    <meta name="twitter:description"
+        content="Contestify is a productivity tool for competitive programmers. Enhance your coding experience and efficiency.">
+    <meta name="twitter:image" content>
+    <meta name="twitter:site" content="@yourtwitterhandle">
 
-        <!-- Favicon -->
-        <link rel="shortcut icon" href="/assets/images/contestify/logo.png"
-            type="image/x-icon">
+    <!-- Styles -->
+    <style>
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.5rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            height: 5.5rem;
+        }
 
-        <title>Contests | Contestify | Productivity Tool for Competitive
-            Programmers</title>
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #38bdf8;
+            animation: pulse 2s infinite;
+        }
 
-        <script src="https://kit.fontawesome.com/1627768922.js"
-            crossorigin="anonymous"></script>
-    </head>
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
 
-    <body>
-        <header class="website-header">
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            position: relative;
+            padding: 0.5rem 0;
+            font-weight: 500;
+        }
+
+        .nav-links a::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0%;
+            height: 2px;
+            background-color: #38bdf8;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .contests-list {
+            width: 60%;
+        }
+
+        .choose-platform {
+            width: 30%;
+            margin-top: 9rem;
+        }
+
+        .contest-platform-container {
+            padding: 20px;
+            display: flex;
+            gap: 10px;
+            align-items: start;
+        }
+
+        .ChoosePlatForms {
+            font-size: 36px;
+            font-weight: bold;
+            background: linear-gradient(135deg, #1082ec, #0861c5, #a41e83);
+            background-size: 100%;
+            color: transparent;
+            background-clip: text;
+            -webkit-background-clip: text;
+        }
+    </style>
+
+
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="contests.css">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/assets/images/contestify/logo.png" type="image/x-icon">
+
+    <title>Contests | Contestify | Productivity Tool for Competitive
+        Programmers</title>
+
+    <script src="https://kit.fontawesome.com/1627768922.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <header class="website-header">
+        <nav>
             <div class="logo">Contestify</div>
-            <nav class="navigation">
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="contest.html">Contest</a></li>
-                    <li><a href="notify.html">Notify</a></li>
-                    <li><a href="login.html">Login</a></li>
-                    <li><a href="signup.html">Sign in</a></li>
-                    <li id="liveContests"><div>Live Contests</div></div>
-                </ul>
-
-            </nav>
-        </header>
-        <main class="font-geist min-h-screen pb-12  mx-auto max-w-[936px]" style="overflow: hidden;">
-            <section>
-                <!-- <div class="loader">
+            <div class="nav-links">
+                <a href="contest.html">Contests</a>
+                <a href="notify.html">Notify</a>
+                <a href="login-signup.html">Login</a>
+                <a href="login-signup.html">Sign Up</a>
+            </div>
+            <li id="liveContests"></li>
+        </nav>
+    </header>
+    <main class="font-geist min-h-screen pb-12  mx-auto max-w-[936px]" style="overflow: hidden;">
+        <section>
+            <!-- <div class="loader">
                     <main class="cd__main flex flex-col">
                         <div class="text-xl font-seminold">Loading...</div>
                         <svg id="svg-trophy" xmlns="http://www.w3.org/2000/svg"
@@ -549,29 +623,26 @@
 
                     </main>
                 </div> -->
-                <div class="mainDIV hidden m-2">
+            <div class="contest-platform-container">
+                <div class="mainDIV hidden m-2 contests-list">
                     <!-- <h3>Contests Calendar</h3> -->
                     <div class="lastoption hidden"></div>
                     <div class="flex items-center justify-center" style="display: none;">
                         <div
                             class="Options flex items-center justify-center gap-6 p-2 w-fit text-xs border border-[#464646] rounded-md my-2">
-                            <div
-                                class="btnOpt border px-2 py-1 rounded-md border-[#464646] hover:border-[#363636] bg-[#404040] hover:bg-[#464646] hover:text-green-500 cursor-pointer whitespace-nowrap"
+                            <div class="btnOpt border px-2 py-1 rounded-md border-[#464646] hover:border-[#363636] bg-[#404040] hover:bg-[#464646] hover:text-green-500 cursor-pointer whitespace-nowrap"
                                 id="btnAlarm">
                                 Notify me
                             </div>
-                            <div
-                                class="btnOpt okactive border px-2 py-1 rounded-md border-[#464646] hover:border-[#363636] bg-[#404040] hover:bg-[#464646] hover:text-green-500 cursor-pointer whitespace-nowrap"
+                            <div class="btnOpt okactive border px-2 py-1 rounded-md border-[#464646] hover:border-[#363636] bg-[#404040] hover:bg-[#464646] hover:text-green-500 cursor-pointer whitespace-nowrap"
                                 id="btnHome">
                                 Home
                             </div>
-                            <div
-                                class="btnOpt border px-2 py-1 rounded-md border-[#464646] hover:border-[#363636] bg-[#404040] hover:bg-[#464646] hover:text-green-500 cursor-pointer whitespace-nowrap"
+                            <div class="btnOpt border px-2 py-1 rounded-md border-[#464646] hover:border-[#363636] bg-[#404040] hover:bg-[#464646] hover:text-green-500 cursor-pointer whitespace-nowrap"
                                 id="btnSetting">
                                 Platforms
                             </div>
-                            <div
-                                class="btnOpt border px-2 py-1 rounded-md border-[#464646] hover:border-[#363636] bg-[#404040] hover:bg-[#464646] hover:text-green-500 cursor-pointer whitespace-nowrap"
+                            <div class="btnOpt border px-2 py-1 rounded-md border-[#464646] hover:border-[#363636] bg-[#404040] hover:bg-[#464646] hover:text-green-500 cursor-pointer whitespace-nowrap"
                                 id="btnLeaderboard">
                                 Leaderboard
                             </div>
@@ -580,29 +651,33 @@
 
                     <div class="MainCon ">
 
-                        <div class="equaldiv hidden" id="Alarm" style="display: flex; align-items: center; justify-content: center; gap: 10px; padding: 8px; font-size: 25px; font-weight: bold; margin: 8px 0;">
+                        <div class="equaldiv hidden" id="Alarm"
+                            style="display: flex; align-items: center; justify-content: center; gap: 10px; padding: 8px; font-size: 25px; font-weight: bold; margin: 8px 0;">
                             <h4>Upcoming Contests</h4>
                         </div>
-                        <div class="remIsSet" style="display: flex; align-items: center; justify-content: flex-end; gap: 10px; padding: 8px; font-size: 14px; margin-right: 40px; color: transparent;"></div>
-                        
+                        <div class="remIsSet"
+                            style="display: flex; align-items: center; justify-content: flex-end; gap: 10px; padding: 8px; font-size: 14px; margin-right: 40px; color: transparent;">
+                        </div>
+
                         <div class="equaldiv" id="Home">
-                            <div class="optTool" style="display: flex; align-items: center; justify-content: center; gap: 10px; padding: 8px; font-size: 12px; margin: 7px 0;">
-                                <div class="btnOpt" id="today" 
-                                    style="border: 1px solid #464646; padding: 10px 20px; border-radius: 4px; background-color: #404040; cursor: pointer; white-space: nowrap;"
-                                    onmouseover="this.style.borderColor='#363636'; this.style.backgroundColor='#464646'; this.style.color='green';"
-                                    onmouseout="this.style.borderColor='#464646'; this.style.backgroundColor='#404040'; this.style.color='';">
+                            <div class="optTool"
+                                style="display: flex; color: white; align-items: center; justify-content: center; gap: 10px; padding: 8px; font-size: 12px; margin: 7px 0;">
+                                <div class="btnOpt" id="today"
+                                    style="border: 1px solid #464646; padding: 10px 20px; border-radius: 4px; background: linear-gradient(135deg, #1082ec, #623a9f, #a41e83); cursor: pointer; white-space: nowrap;"
+                                    onmouseover="this.style.borderColor='#363636'; this.style.backgroundColor='#464646'; this.style.color='#38bdf8';"
+                                    onmouseout="this.style.borderColor='#464646'; this.style.backgroundColor='#404040'; this.style.color='white';">
                                     <i class="fa-solid fa-calendar-day"></i> Today
                                 </div>
-                                <div class="btnOpt okactive" id="upcoming" 
-                                    style="border: 1px solid #464646; padding: 10px 15px; border-radius: 4px; background-color: #404040; color: white; cursor: pointer; white-space: nowrap;"
-                                    onmouseover="this.style.borderColor='#363636'; this.style.backgroundColor='#464646'; this.style.color='green';"
+                                <div class="btnOpt okactive" id="upcoming"
+                                    style="border: 1px solid #464646; padding: 10px 15px; border-radius: 4px; background: linear-gradient(135deg, #1082ec, #623a9f, #a41e83); color: white; cursor: pointer; white-space: nowrap;"
+                                    onmouseover="this.style.borderColor='#363636'; this.style.backgroundColor='#464646'; this.style.color='#38bdf8';"
                                     onmouseout="this.style.borderColor='#464646'; this.style.backgroundColor='#404040'; this.style.color='white';">
                                     <i class="fa-solid fa-calendar-week"></i> Upcoming
                                 </div>
                                 <div class="fil">
-                                    <select id="filter" name="Filter" 
-                                        style="border: 1px solid #464646; padding: 8px 10px; border-radius: 4px; background-color: #404040; cursor: pointer; white-space: nowrap; color: white;"
-                                        onmouseover="this.style.borderColor='#363636'; this.style.backgroundColor='#464646'; this.style.color='green';"
+                                    <select id="filter" name="Filter"
+                                        style="border: 1px solid #464646; height: 40px;padding: 8px 10px; border-radius: 4px; background: linear-gradient(135deg, #1082ec, #623a9f, #a41e83); cursor: pointer; white-space: nowrap; color: white;"
+                                        onmouseover="this.style.borderColor='#363636'; this.style.backgroundColor='#464646'; this.style.color='#38bdf8';"
                                         onmouseout="this.style.borderColor='#464646'; this.style.backgroundColor='#404040'; this.style.color='white';">
                                         <option value="dur24" selected>Duration upto 1day</option>
                                         <option value="dur3">Duration upto 3hrs</option>
@@ -611,185 +686,213 @@
                                 </div>
                             </div>
                         </div>
-                        
-                                <div
-                                    class="border px-2 py-1 rounded-md border-[#464646] hover:border-[#363636] bg-[#404040] hover:bg-[#464646] hover:text-green-500 cursor-pointer"
-                                    onclick="window.location.reload();">
-                                    <!-- <svg xmlns="http://www.w3.org/2000/svg"
+
+                        <div class="border px-2 py-1 rounded-md border-[#464646] hover:border-[#363636] bg-[#404040] hover:bg-[#464646] hover:text-green-500 cursor-pointer"
+                            onclick="window.location.reload();">
+                            <!-- <svg xmlns="http://www.w3.org/2000/svg"
                                         height="16px" viewBox="0 -960 960 960"
                                         width="16px" fill="#e8eaed">
                                         <path
                                             d="M480-160q-134 0-227-93t-93-227q0-134 93-227t227-93q69 0 132 28.5T720-690v-110h80v280H520v-80h168q-32-56-87.5-88T480-720q-100 0-170 70t-70 170q0 100 70 170t170 70q77 0 139-44t87-116h84q-28 106-114 173t-196 67Z" />
                                     </svg> -->
-                                </div>
-                            </div>
-
-                            <!-- render the contests  -->
-                            <div style="display: flex; align-items: center; justify-content: center;">
-                                <div class="contest_table" style="min-width: 700px; max-width: 1200px; color: white !important;"></div>
-                            </div>
                         </div>
+                    </div>
 
-                        <div class="equaldiv hidden" id="Setting">
-                            <h4>Choose Platforms</h4>
-                            <div
-                                class="eqplate flex items-center justify-between gap-2 p-2 my-2 border rounded-md border-[#464646] hover:border-[#363636]">
-                                <div
-                                    class=" flex gap-4">
-                                    <img
-                                        src="images/platforms/codeforces.png"
-                                        alt="codeforces"
-                                        style="width: 32px; height: 32px;">
-                                    <span
-                                        class="flex-shrink-0">Codeforces</span>
-                                </div>
-                                <div class="tick">
-                                    <input type="checkbox" name="codeforces.com"
-                                        id="host1">
-                                </div>
-                            </div>
-
-                            <div
-                                class="eqplate flex items-center justify-between gap-2 p-2 my-2 border rounded-md border-[#464646] hover:border-[#363636]">
-                                <div
-                                    class=" flex gap-4">
-                                    <img
-                                        src="images/platforms/codechef.png"
-                                        alt="codechef"
-                                        style="width: 32px; height: 32px;">
-                                    <span class="flex-shrink-0">Codechef</span>
-                                </div>
-                                <div class="tick">
-                                    <input type="checkbox" name="codechef.com"
-                                        id="host2">
-                                </div>
-                            </div>
-
-                            <div
-                                class="eqplate flex items-center justify-between gap-2 p-2 my-2 border rounded-md border-[#464646] hover:border-[#363636]">
-                                <div
-                                    class=" flex gap-4">
-                                    <img
-                                        src="images/platforms/atcoder.png"
-                                        alt="atcoder"
-                                        style="width: 32px; height: 32px;">
-                                    <span class="flex-shrink-0">Atcoder</span>
-                                </div>
-                                <div class="tick">
-                                    <input type="checkbox" name="atcoder.jp"
-                                        id="host3">
-                                </div>
-                            </div>
-
-                            <div
-                                class="eqplate flex items-center justify-between gap-2 p-2 my-2 border rounded-md border-[#464646] hover:border-[#363636]">
-                                <div
-                                    class=" flex gap-4">
-                                    <img
-                                        src="images/platforms/leetcode.png"
-                                        alt="leetcode"
-                                        style="width: 32px; height: 32px;">
-                                    <span class="flex-shrink-0">Leetcode</span>
-                                </div>
-                                <div class="tick">
-                                    <input type="checkbox" name="leetcode.com"
-                                        id="host4">
-                                </div>
-                            </div>
-
-                            <div
-                                class="eqplate flex items-center justify-between gap-2 p-2 my-2 border rounded-md border-[#464646] hover:border-[#363636]">
-                                <div
-                                    class=" flex gap-4">
-                                    <img
-                                        src="images/platforms/naukriCode360.png"
-                                        alt="codingNinja" class="rounded-full "
-                                        style="width: 32px; height: 32px;">
-                                    <span class="flex-shrink-0">Naukri
-                                        Code360</span>
-                                </div>
-                                <div class="tick">
-                                    <input type="checkbox"
-                                        name="codingninjas.com/codestudio"
-                                        id="host5">
-                                </div>
-                            </div>
-
-                            <div
-                                class="eqplate flex items-center justify-between gap-2 p-2 my-2 border rounded-md border-[#464646] hover:border-[#363636]">
-                                <div
-                                    class=" flex gap-4">
-                                    <img
-                                        src="images/platforms/HackerEarth.png"
-                                        alt="hackerearth"
-                                        style="width: 32px; height: 32px;">
-                                    <span
-                                        class="flex-shrink-0">HackerEarth</span>
-                                </div>
-                                <div class="tick">
-                                    <input type="checkbox"
-                                        name="hackerearth.com" id="host6">
-                                </div>
-                            </div>
-
-                            <div
-                                class="eqplate flex items-center justify-between gap-2 p-2 my-2 border rounded-md border-[#464646] hover:border-[#363636]">
-                                <div
-                                    class=" flex gap-4">
-                                    <img
-                                        src="images/platforms/GeeksforGeeks.png"
-                                        alt="gfg"
-                                        style="width: 32px; height: 32px;">
-                                    <span
-                                        class="flex-shrink-0">GeeksforGeeks</span>
-                                </div>
-                                <div class="tick">
-                                    <input type="checkbox"
-                                        name="geeksforgeeks.org" id="host7">
-                                </div>
-                            </div>
-
-                            <div
-                                class="eqplate flex items-center justify-between gap-2 p-2 my-2 border rounded-md border-[#464646] hover:border-[#363636]">
-                                <div
-                                    class=" flex gap-4">
-                                    <img
-                                        src="images/platforms/topcoder.png"
-                                        alt="Topcoder"
-                                        style="width: 32px; height: 32px;">
-                                    <span class="flex-shrink-0">Topcoder</span>
-                                </div>
-                                <div class="tick">
-                                    <input type="checkbox" name="topcoder.com"
-                                        id="host8">
-                                </div>
-                            </div>
-
+                    <!-- render the contests  -->
+                    <div style="display: flex; align-items: center; justify-content: center;">
+                        <div class="contest_table"
+                            style="min-width: 700px; max-width: 1200px; color: white !important;">
                         </div>
-
-                        <div class="equaldiv hidden" id="Leaderboard">
-                            <div
-                                class="flex flex-col items-center justify-center h-80">
-                                <div>Comming Soon...</div>
-                            </div>
-
-                        </div>
-
                     </div>
                 </div>
-                <div class="flex items-center justify-center my-4">
-                    <!-- <span class="text-xs">Back To top</span> -->
-                    <button class="button" onclick="scrollToTop()">
-                        <svg class="svgIcon" viewBox="0 0 384 512">
-                            <path
-                                d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2V448c0 17.7 14.3 32 32 32s32-14.3 32-32V141.2L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z">
-                            </path>
-                        </svg>
-                    </button>
 
+                <div class="choose-platform equaldiv " id="Setting">
+                    <h4 class="ChoosePlatForms">Choose Platforms</h4>
+                    <div style="display: grid; gap: 10px; margin-top: 2.2rem;">
+                        <div
+                            style="display: flex; align-items: center; width: 100%; background: linear-gradient(135deg, #1082ec, #623a9f, #a41e83); border-radius: 8px; padding: 8px; color: #ffffff;">
+                            <img src="images/platforms/codeforces.png" alt="codeforces"
+                                style="width: 32px; height: 32px; margin-right: 15px; border-radius: 8px;">
+                            <span style="flex-grow: 1;">Codeforces</span>
+                            <label
+                                style="position: relative; display: inline-block; width: 50px; height: 24px; cursor: pointer;">
+                                <input type="checkbox" name="codeforces.com" id="host1"
+                                    style="position: absolute; opacity: 0; cursor: pointer; height: 0; width: 0;">
+                                <span
+                                    style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: #09b6c3; transition: .4s; border-radius: 34px;"></span>
+                                <span
+                                    style="position: absolute; height: 18px; width: 18px; left: 3px; bottom: 3px; background-color: white; transition: .4s; border-radius: 50%; transform: translateX(26px);"
+                                    data-checked="true"></span>
+                            </label>
+                        </div>
+
+                        <div
+                            style="display: flex; align-items: center; width: 100%; background: linear-gradient(135deg, #1082ec, #623a9f, #a41e83); border-radius: 8px; padding: 8px; color: #ffffff;">
+                            <img src="images/platforms/codechef.png" alt="codechef"
+                                style="width: 32px; height: 32px; margin-right: 15px; border-radius: 8px;">
+                            <span style="flex-grow: 1;">Codechef</span>
+                            <label
+                                style="position: relative; display: inline-block; width: 50px; height: 24px; cursor: pointer;">
+                                <input type="checkbox" name="codechef.com" id="host2"
+                                    style="position: absolute; opacity: 0; cursor: pointer; height: 0; width: 0;">
+                                <span
+                                    style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: #09b6c3; transition: .4s; border-radius: 34px;"></span>
+                                <span
+                                    style="position: absolute; height: 18px; width: 18px; left: 3px; bottom: 3px; background-color: white; transition: .4s; border-radius: 50%; transform: translateX(26px);"
+                                    data-checked="true"></span>
+                            </label>
+                        </div>
+
+                        <div
+                            style="display: flex; align-items: center; width: 100%; background: linear-gradient(135deg, #1082ec, #623a9f, #a41e83); border-radius: 8px; padding: 8px; color: #ffffff;">
+                            <img src="images/platforms/atcoder.png" alt="atcoder"
+                                style="width: 32px; height: 32px; margin-right: 15px; border-radius: 8px;">
+                            <span style="flex-grow: 1;">Atcoder</span>
+                            <label
+                                style="position: relative; display: inline-block; width: 50px; height: 24px; cursor: pointer;">
+                                <input type="checkbox" name="atcoder.jp" id="host3"
+                                    style="position: absolute; opacity: 0; cursor: pointer; height: 0; width: 0;">
+                                <span
+                                    style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: #09b6c3; transition: .4s; border-radius: 34px;"></span>
+                                <span
+                                    style="position: absolute; height: 18px; width: 18px; left: 3px; bottom: 3px; background-color: white; transition: .4s; border-radius: 50%; transform: translateX(26px);"
+                                    data-checked="true"></span>
+                            </label>
+                        </div>
+
+                        <div
+                            style="display: flex; align-items: center; width: 100%; background: linear-gradient(135deg, #1082ec, #623a9f, #a41e83); border-radius: 8px; padding: 8px; color: #ffffff;">
+                            <img src="images/platforms/leetcode.png" alt="leetcode"
+                                style="width: 32px; height: 32px; margin-right: 15px; border-radius: 8px;">
+                            <span style="flex-grow: 1;">Leetcode</span>
+                            <label
+                                style="position: relative; display: inline-block; width: 50px; height: 24px; cursor: pointer;">
+                                <input type="checkbox" name="leetcode.com" id="host4"
+                                    style="position: absolute; opacity: 0; cursor: pointer; height: 0; width: 0;">
+                                <span
+                                    style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: #09b6c3; transition: .4s; border-radius: 34px;"></span>
+                                <span
+                                    style="position: absolute; height: 18px; width: 18px; left: 3px; bottom: 3px; background-color: white; transition: .4s; border-radius: 50%; transform: translateX(26px);"
+                                    data-checked="true"></span>
+                            </label>
+                        </div>
+
+                        <div
+                            style="display: flex; align-items: center; width: 100%; background: linear-gradient(135deg, #1082ec, #623a9f, #a41e83); border-radius: 8px; padding: 8px; color: #ffffff;">
+                            <img src="images/platforms/naukriCode360.png" alt="codingNinja" class="rounded-full"
+                                style="width: 32px; height: 32px; margin-right: 15px; border-radius: 8px;">
+                            <span style="flex-grow: 1;">Naukri Code360</span>
+                            <label
+                                style="position: relative; display: inline-block; width: 50px; height: 24px; cursor: pointer;">
+                                <input type="checkbox" name="codingninjas.com/codestudio" id="host5"
+                                    style="position: absolute; opacity: 0; cursor: pointer; height: 0; width: 0;">
+                                <span
+                                    style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: #09b6c3; transition: .4s; border-radius: 34px;"></span>
+                                <span
+                                    style="position: absolute; height: 18px; width: 18px; left: 3px; bottom: 3px; background-color: white; transition: .4s; border-radius: 50%; transform: translateX(26px);"
+                                    data-checked="true"></span>
+                            </label>
+                        </div>
+
+                        <div
+                            style="display: flex; align-items: center; width: 100%; background: linear-gradient(135deg, #1082ec, #623a9f, #a41e83); border-radius: 8px; padding: 8px; color: #ffffff;">
+                            <img src="images/platforms/HackerEarth.png" alt="hackerearth"
+                                style="width: 32px; height: 32px; margin-right: 15px; border-radius: 8px;">
+                            <span style="flex-grow: 1;">HackerEarth</span>
+                            <label
+                                style="position: relative; display: inline-block; width: 50px; height: 24px; cursor: pointer;">
+                                <input type="checkbox" name="hackerearth.com" id="host6"
+                                    style="position: absolute; opacity: 0; cursor: pointer; height: 0; width: 0;">
+                                <span
+                                    style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: #09b6c3; transition: .4s; border-radius: 34px;"></span>
+                                <span
+                                    style="position: absolute; height: 18px; width: 18px; left: 3px; bottom: 3px; background-color: white; transition: .4s; border-radius: 50%; transform: translateX(26px);"
+                                    data-checked="true"></span>
+                            </label>
+                        </div>
+
+                        <div
+                            style="display: flex; align-items: center; width: 100%; background: linear-gradient(135deg, #1082ec, #623a9f, #a41e83); border-radius: 8px; padding: 8px; color: #ffffff;">
+                            <img src="images/platforms/GeeksforGeeks.png" alt="gfg"
+                                style="width: 32px; height: 32px; margin-right: 15px; border-radius: 8px;">
+                            <span style="flex-grow: 1;">GeeksforGeeks</span>
+                            <label
+                                style="position: relative; display: inline-block; width: 50px; height: 24px; cursor: pointer;">
+                                <input type="checkbox" name="geeksforgeeks.org" id="host7"
+                                    style="position: absolute; opacity: 0; cursor: pointer; height: 0; width: 0;">
+                                <span
+                                    style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: #09b6c3; transition: .4s; border-radius: 34px;"></span>
+                                <span
+                                    style="position: absolute; height: 18px; width: 18px; left: 3px; bottom: 3px; background-color: white; transition: .4s; border-radius: 50%; transform: translateX(26px);"
+                                    data-checked="true"></span>
+                            </label>
+                        </div>
+
+                        <div
+                            style="display: flex; align-items: center; width: 100%; background: linear-gradient(135deg, #1082ec, #623a9f, #a41e83); border-radius: 8px; padding: 8px; color: #ffffff;">
+                            <img src="images/platforms/topcoder.png" alt="Topcoder"
+                                style="width: 32px; height: 32px; margin-right: 15px; border-radius: 8px;">
+                            <span style="flex-grow: 1;">Topcoder</span>
+                            <label
+                                style="position: relative; display: inline-block; width: 50px; height: 24px; cursor: pointer;">
+                                <input type="checkbox" name="topcoder.com" id="host8"
+                                    style="position: absolute; opacity: 0; cursor: pointer; height: 0; width: 0;">
+                                <span
+                                    style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: #09b6c3; transition: .4s; border-radius: 34px;"></span>
+                                <span
+                                    style="position: absolute; height: 18px; width: 18px; left: 3px; bottom: 3px; background-color: white; transition: .4s; border-radius: 50%; transform: translateX(26px);"
+                                    data-checked="true"></span>
+                            </label>
+                        </div>
+                    </div>
+                    <!-- <input type="checkbox" id="myCheckbox" style="accent-color: green;"> -->
+                    <!-- <label for="myCheckbox">Toggle</label> -->
+                    <script>
+                        document.querySelectorAll('label').forEach(label => {
+                            label.addEventListener('click', function (e) {
+                                const checkbox = this.querySelector('input[type="checkbox"]');
+                                const thumb = this.querySelector('span:last-child');
+                                const track = this.querySelector('span:first-child');
+
+                                // checkbox.checked = !checkbox.checked;
+
+                                if (checkbox.checked) {
+                                    thumb.style.transform = 'translateX(26px)';
+                                    track.style.backgroundColor = '#28a745'; // Green color when on
+                                } else {
+                                    thumb.style.transform = 'translateX(0px)';
+                                    track.style.backgroundColor = '#6c757d'; // Gray color when off
+                                }
+                            });
+                        });
+                    </script>
                 </div>
-            </section>
-            <!-- <section class="p-2">
+            </div>
+
+
+
+            <!-- <div class="equaldiv hidden" id="Leaderboard">
+                <div class="flex flex-col items-center justify-center h-80">
+                    <div>Comming Soon...</div>
+                </div>
+
+            </div> -->
+
+            </div>
+            </div>
+            <div class="flex items-center justify-center my-4">
+                <!-- <span class="text-xs">Back To top</span> -->
+                <button class="button" onclick="scrollToTop()">
+                    <svg class="svgIcon" viewBox="0 0 384 512">
+                        <path
+                            d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2V448c0 17.7 14.3 32 32 32s32-14.3 32-32V141.2L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z">
+                        </path>
+                    </svg>
+                </button>
+
+            </div>
+        </section>
+        <!-- <section class="p-2">
             <div>
                 <div class="text-lg ">Contests</div>
                 <div class="flex gap-2 items-center text-xs my-1">
@@ -824,42 +927,10 @@
                 </div>
             </div>
         </section> -->
-        </main>
-        <footer
-            class="h-12 px-2 xl:px-24 lg:px-16 md:px-8 sm:px-4 xs:px-2 fixed flex items-center justify-between bottom-0 w-full z-50 text-sm bg-[#282828] border-t border-[#464646] font-geist">
-            <div class="flex items-center justify-between gap-2">
-                <div>
-                    <img class="w-6 h-6 rounded-full"
-                        src="/assets//images/contestify/logo.png"
-                        alt="contestify-logo">
-                </div>
-                <div class="font-semibold  text-2xl text-center text-white ">
+    </main>
 
-                    Contestify
-                </div>
-            </div>
-            <div>
-                <div>
-                    <ul class="flex gap-2">
-                        <!-- <a href="https://contestify-app.vercel.app" target="_blank"
-                        class="border !text-white text-xs rounded-md px-2 py-[2px] border-[#464646] hover:border-[#363636] bg-[#404040] hover:bg-[#464646] font-light cursor-pointer">
-                        website
-                    </a> -->
-                        <a href="https://github.com/contestify-app"
-                            target="_blank"
-                            class="border !text-white text-xs rounded-md px-2 py-[2px] border-[#464646] hover:border-[#363636] bg-[#404040] hover:bg-[#464646] font-light cursor-pointer">
-                            GitHub
-                        </a>
-                        <a href="/about" target="_blank"
-                            class="border !text-white text-xs rounded-md px-2 py-[2px] border-[#464646] hover:border-[#363636] bg-[#404040] hover:bg-[#464646] font-light cursor-pointer">
-                            About Us
-                        </a>
-                    </ul>
-                </div>
-            </div>
-        </footer>
 
-        <script src="script.js"></script>
-    </body>
+    <script src="script.js"></script>
+</body>
 
 </html>
