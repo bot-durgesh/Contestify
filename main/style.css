@@ -98,6 +98,13 @@ a {
   border-radius: 25px;
 }
 
+.logo img {
+  margin-top: 9px;
+  width: 40px;
+  height: auto;
+}
+
+
 .mainContent nav .theme-toggle::before {
   content: "";
   position: absolute;
@@ -151,8 +158,24 @@ a {
 }
 
 .logo-text .logo .logo-name span {
-  color: var(--dark);
+  color: #38bdf8;
+  animation: pulse 2s infinite;
 }
+
+@keyframes pulse {
+  0% {
+      opacity: 1;
+  }
+
+  50% {
+      opacity: 0.7;
+  }
+
+  100% {
+      opacity: 1;
+  }
+}
+
 
 .container {
   position: relative;
@@ -576,3 +599,15 @@ form.sign-in-form {
     width: 100%;
 }
 
+
+
+
+.logo img{
+  width: 50px;
+  animation: pulse 2s infinite;
+}
+
+.LogoImg{
+  width: 40px;
+  height: auto;
+}

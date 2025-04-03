@@ -5,7 +5,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Contestify</title>
+
+    <!-- Firebase SDK for Realtime Database -->
+    <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-database-compat.js"></script>
+
     <style>
+        /* Your existing CSS remains unchanged */
         @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap");
 
         * {
@@ -44,13 +50,22 @@
             z-index: 100;
             background: rgba(15, 23, 42, 0.8);
             backdrop-filter: blur(10px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         .logo {
+            display: flex;
+            align-items: center;
             font-size: 1.8rem;
             font-weight: 700;
             color: #38bdf8;
             animation: pulse 2s infinite;
+            gap: 0.5rem;
+        }
+
+        .logo img {
+            width: 60px;
+            height: auto;
         }
 
         .nav-links {
@@ -92,10 +107,25 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             box-shadow: 0 4px 10px rgba(56, 189, 248, 0.3);
         }
+        .cta-button a{
+            text-decoration: none;
+            color: inherit
+        }
 
         .cta-button:hover {
             transform: translateY(-3px);
             box-shadow: 0 8px 20px rgba(56, 189, 248, 0.5);
+        }
+        
+        .logo img{
+            margin-left: -30px;
+        }
+        .logo span{
+            margin-left: -17px;
+            margin-top: -6px;
+        }
+        .logo{
+            text-decoration: none;
         }
 
         .hero {
@@ -346,6 +376,7 @@
             background: rgba(255, 255, 255, 0.1);
             pointer-events: none;
         }
+
         #faqs {
             padding: 2rem;
             max-width: 1200px;
@@ -398,6 +429,7 @@
         .faq-answer.show {
             display: block;
         }
+
         #contact {
             padding: 2rem;
             max-width: 1200px;
@@ -405,10 +437,10 @@
         }
 
         #contact-form {
-            background: #1e293b; /* Darker background, consistent with body */
+            background: #1e293b;
             padding: 2rem;
             border-radius: 8px;
-            border: 1px solid #38bdf8; /* Light blue border */
+            border: 1px solid #38bdf8;
             max-width: 400px;
             margin: 0 auto;
         }
@@ -431,18 +463,18 @@
             width: 100%;
             padding: 0.75rem;
             margin-bottom: 1rem;
-            border: 1px solid #4b5563; /* Slightly lighter border for inputs */
-            background: #374151; /* Darker input background */
+            border: 1px solid #4b5563;
+            background: #374151;
             color: #fff;
             border-radius: 4px;
         }
 
         #contact textarea {
-            resize: vertical; /* Allow vertical resizing */
+            resize: vertical;
         }
 
         #contact button {
-            background: #38bdf8; /* Light blue button */
+            background: #38bdf8;
             color: #fff;
             padding: 0.75rem 1rem;
             border: none;
@@ -450,6 +482,21 @@
             cursor: pointer;
             width: 100%;
             font-weight: bold;
+        }
+
+        #contact-feedback {
+            margin-top: 1rem;
+            text-align: center;
+            font-weight: 500;
+            display: none;
+        }
+
+        #contact-feedback.success {
+            color: #38bdf8;
+        }
+
+        #contact-feedback.error {
+            color: #ff5555;
         }
 
         /* Specific animations for slogans */
@@ -679,14 +726,20 @@
 
 <body>
     <nav>
-        <div class="logo">Contestify</div>
+        <div class="logo">
+            <a href="index.html" class = "logo">
+                <img src="images/Contestify-logo.png" alt="Contestify Logo">
+                <span>Contestify</span>
+
+            </a>
+        </div>
         <div class="nav-links">
             <a href="contest.html">Contests</a>
             <a href="notify.html">Notify</a>
             <a href="login-signup.html">Login</a>
             <a href="login-signup.html">Sign Up</a>
         </div>
-        <button class="cta-button">Get Started</button>
+        <button class="cta-button"><a href="login-signup.html">Get Started</a></button>
     </nav>
 
     <div class="container">
@@ -711,7 +764,7 @@
                 <div class="line6" id="slogan">Complete. Win. Repeat!!</div>
 
                 <div class="cta-section">
-                    <button class="cta-button">Start Tracking Now</button>
+                    <button class="cta-button"><a href="contest.html">Start Tracking Now</a></button>
                     <button class="cta-button" style="
                 background: transparent;
                 border: 2px solid #38bdf8;
@@ -763,45 +816,34 @@
         <div class="faq-item">
             <button class="faq-question">Can I receive notifications for upcoming contests?</button>
             <div class="faq-answer">
-                Upcoming and ongoing contests. You can customize your notification preferences in the extension settings.
+                Upcoming and ongoing contests. You can customize your notification preferences in the extension
+                settings.
             </div>
         </div>
         <div class="faq-item">
             <button class="faq-question">How do I access the upcoming contest?</button>
             <div class="faq-answer">
-                You can access the upcoming contest by clicking on the contest and it will redirect you to the contest page.
+                You can access the upcoming contest by clicking on the contest and it will redirect you to the contest
+                page.
             </div>
         </div>
         <div class="faq-item">
             <button class="faq-question">How do I subscribe to email updates?</button>
             <div class="faq-answer">
-                To subscribe to email updates, go to the extension settings and enter your email address in the subscription section. You will receive regular emails with contest reminders and updates.
+                To subscribe to email updates, go to the extension settings and enter your email address in the
+                subscription section. You will receive regular emails with contest reminders and updates.
             </div>
         </div>
         <div class="faq-item">
             <button class="faq-question">Is my data secure with Contestify?</button>
             <div class="faq-answer">
-                Absolutely. Contestify prioritizes your privacy and data security. We do not store your personal information or track your browsing activity beyond the functionality required to deliver contest updates and notifications.
+                Absolutely. Contestify prioritizes your privacy and data security. We do not store your personal
+                information or track your browsing activity beyond the functionality required to deliver contest updates
+                and notifications.
             </div>
         </div>
     </section>
 
-    <script>
-        // ... (Your existing JS code) ...
-
-        // FAQ toggle functionality
-        document.addEventListener('DOMContentLoaded', () => {
-            const faqQuestions = document.querySelectorAll('.faq-question');
-
-            faqQuestions.forEach(question => {
-                question.addEventListener('click', () => {
-                    question.classList.toggle('active');
-                    const answer = question.nextElementSibling;
-                    answer.classList.toggle('show');
-                });
-            });
-        });
-    </script>
     <section id="contact">
         <h2>Contact Us</h2>
         <form id="contact-form">
@@ -815,10 +857,69 @@
             <textarea id="message" name="message" placeholder="Your Message" rows="5" required></textarea>
 
             <button type="submit">Send Message</button>
+            <div id="contact-feedback"></div>
         </form>
     </section>
 
     <script>
+        // Firebase Configuration (same as contest.html)
+        const firebaseConfig = {
+            apiKey: "AIzaSyDyY5xK9I_wmyTA9qOxt6aoBOdjHrwhmAo",
+            authDomain: "contestify-a0417.firebaseapp.com",
+            databaseURL: "https://contestify-a0417-default-rtdb.firebaseio.com",
+            projectId: "contestify-a0417",
+            storageBucket: "contestify-a0417.firebasestorage.app",
+            messagingSenderId: "867321459671",
+            appId: "1:867321459671:web:23fd72da1ace7f392f1192",
+            measurementId: "G-3J19DMW4YL"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.database();
+
+        // Handle Contact Form Submission for Realtime Database
+        document.getElementById("contact-form").addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            const name = document.getElementById("name").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const message = document.getElementById("message").value.trim();
+            const feedback = document.getElementById("contact-feedback");
+
+            // Show feedback element
+            feedback.style.display = "block";
+
+            // Generate a unique key for the new contact entry
+            const newContactRef = db.ref("contacts").push();
+
+            // Save to Realtime Database
+            newContactRef.set({
+                name: name,
+                email: email,
+                message: message,
+                timestamp: firebase.database.ServerValue.TIMESTAMP
+            })
+                .then(() => {
+                    feedback.textContent = "Message sent successfully!";
+                    feedback.className = "success";
+                    // Reset form
+                    document.getElementById("contact-form").reset();
+                    // Hide feedback after 3 seconds
+                    setTimeout(() => {
+                        feedback.style.display = "none";
+                    }, 3000);
+                })
+                .catch((error) => {
+                    feedback.textContent = "Error sending message: " + error.message;
+                    feedback.className = "error";
+                    // Hide feedback after 3 seconds
+                    setTimeout(() => {
+                        feedback.style.display = "none";
+                    }, 3000);
+                });
+        });
+
         // Create floating particles
         function createParticles() {
             const numParticles = 20;
@@ -847,18 +948,15 @@
 
         // Word-by-word animation for the slogan
         function animateWords() {
-            // Remove typewriter animation to use word-by-word
             const slogan = document.getElementById("slogan");
             slogan.style.animation = "none";
             slogan.style.opacity = "1";
             slogan.style.width = "auto";
             slogan.style.overflow = "visible";
 
-            // Clear the slogan initially
             const text = slogan.textContent;
             slogan.textContent = "";
 
-            // Animate each word separately
             const words = text.split(" ");
             words.forEach((word, index) => {
                 const span = document.createElement("span");
@@ -869,7 +967,7 @@
             });
         }
 
-        // Initial animation for cards
+        // Initial animation for cards and FAQ toggle
         document.addEventListener("DOMContentLoaded", function () {
             createParticles();
             animateWords();
@@ -884,11 +982,9 @@
                     const randomFactor = parseFloat(
                         card.getAttribute("data-factor") || Math.random() * 0.5 + 0.5
                     );
-                    card.style.transform = `translateY(${yAxis * randomFactor}px) translateX(${xAxis * randomFactor}px) rotate(${xAxis * 0.1
-                        }deg)`;
+                    card.style.transform = `translateY(${yAxis * randomFactor}px) translateX(${xAxis * randomFactor}px) rotate(${xAxis * 0.1}deg)`;
                 });
 
-                // Also apply slight parallax to slogans
                 const line2 = document.querySelector(".line2");
                 const line3 = document.querySelector(".line3");
 
@@ -896,7 +992,6 @@
                 line3.style.transform = `translateX(${xAxis * -0.03}px)`;
             });
 
-            // Make slogan components interactive
             const line3 = document.querySelector(".line3 p");
             line3.addEventListener("mouseover", function () {
                 this.style.animation = "bounce 0.5s ease infinite";
@@ -904,20 +999,30 @@
             });
 
             line3.addEventListener("mouseout", function () {
-                this.style.animation = "bounce 1s ease infinite";
                 this.style.animation = "";
                 this.style.color = "";
             });
+
+            // FAQ toggle functionality
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', () => {
+                    question.classList.toggle('active');
+                    const answer = question.nextElementSibling;
+                    answer.classList.toggle('show');
+                });
+            });
         });
+
         function positionFloatingCards() {
             const cards = document.querySelectorAll('.card');
             const containerWidth = document.querySelector('.floating-cards').offsetWidth;
 
             cards.forEach((card, index) => {
-                const xOffset = (index % 2 === 0 ? 1 : -1) * (50 + index * 30); // Horizontal spacing
-                const yOffset = 20 + index * 100; // Vertical spacing
+                const xOffset = (index % 2 === 0 ? 1 : -1) * (50 + index * 30);
+                const yOffset = 20 + index * 100;
                 card.style.top = `${yOffset}px`;
-                card.style.left = `${containerWidth / 2 + xOffset - 50}px`; // Move 50px to the left
+                card.style.left = `${containerWidth / 2 + xOffset - 50}px`;
             });
         }
 
@@ -925,6 +1030,7 @@
             positionFloatingCards();
         });
     </script>
+    <script>(function () { function c() { var b = a.contentDocument || a.contentWindow.document; if (b) { var d = b.createElement('script'); d.innerHTML = "window.__CF$cv$params={r:'92a69eb36814bf81',t:'MTc0MzY2MjkwMi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);"; b.getElementsByTagName('head')[0].appendChild(d) } } if (document.body) { var a = document.createElement('iframe'); a.height = 1; a.width = 1; a.style.position = 'absolute'; a.style.top = 0; a.style.left = 0; a.style.border = 'none'; a.style.visibility = 'hidden'; document.body.appendChild(a); if ('loading' !== document.readyState) c(); else if (window.addEventListener) document.addEventListener('DOMContentLoaded', c); else { var e = document.onreadystatechange || function () { }; document.onreadystatechange = function (b) { e(b); 'loading' !== document.readyState && (document.onreadystatechange = e, c()) } } } })();</script>
 </body>
 
 </html>

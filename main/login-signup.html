@@ -8,6 +8,23 @@
   <link rel="stylesheet" href="style.css" />
   <title>Sign In | Contestify</title>
   <link rel="icon" href="img/logo.png">
+  <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-database-compat.js"></script>
+  <style>
+    .password-container { position: relative; width: 100%; }
+    .password-container input { width: 100%; padding-right: 40px; box-sizing: border-box; }
+    .password-container .toggle-password { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); cursor: pointer; font-size: 18px; }
+    .forgot-password { display: block; margin-top: 10px; text-align: center; color: #0c9e41; text-decoration: none; font-size: 14px; }
+    .forgot-password:hover { text-decoration: underline; }
+    #errorMessage, #resetMessage, #signupMessage { margin-top: 10px; font-size: 14px; text-align: center; }
+    .error { color: red; }
+    .success { color: lightgreen; }
+    .logo {
+      margin-left: -100px;
+      margin-right: 100px;
+    }
+  </style>
 </head>
 
 <body>
@@ -15,30 +32,26 @@
     <!-- Navbar -->
     <nav>
       <div class="logo-text">
-        <a href="#" class="logo">
-          <div class="logo-name"><span>Con</span>testify</div>
+        <a href="index.html" class="logo">
+          <img src="images/Contestify-logo.png" alt="Contestify-logo">
+          <div class="logo-name"><span>Contestify</span></div>
         </a>
       </div>
       <div class="nav__links">
         <a href="index.html">Home</a>
       </div>
       <div class="nav__links">
-        <a href="#">Contest</a>
+        <a href="contest.html">Contest</a>
       </div>
       <div class="nav__links">
-        <a href="#">Notify</a>
+        <a href="notify.html">Notify</a>
       </div>
       <div class="nav__links">
-        <a href="#">Login</a>
+        <a href="login-signup.html">Login</a>
       </div>
       <div class="nav__links">
-        <a href="#">Sign Up</a>
+        <a href="login-signup.html">Sign Up</a>
       </div>
-      <!-- &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-      <div class="nav__links">
-        <input type="checkbox" id="theme-toggle" hidden>
-        <label for="theme-toggle" class="theme-toggle"></label>
-      </div> -->
     </nav>
     <!-- End of Navbar -->
   </div>
@@ -46,18 +59,21 @@
   <div class="container">
     <div class="forms-container">
       <div class="signin-signup">
-        <form action="#" class="sign-in-form">
+        <form id="loginForm" class="sign-in-form">
           <h2 class="title">Sign in</h2>
           <div class="input-field">
-            <i class="fas fa-user"></i>
-            <input type="text" placeholder="Username" />
+            <i class="fas fa-envelope"></i>
+            <input type="email" id="login-email" placeholder="Email" required>
           </div>
-          <div class="input-field">
+          <div class="input-field password-container">
             <i class="fas fa-lock"></i>
-            <input type="password" placeholder="Password" />
+            <input type="password" id="login-password" placeholder="Password" required autocomplete="current-password">
+            <i class="fas fa-eye toggle-password" id="togglePassword"></i>
           </div>
           <input type="submit" value="Login" class="btn solid" />
-          <!-- <p class="social-text">Or Sign in with social platforms</p> -->
+          <a href="#" class="forgot-password" id="forgotPasswordLink">Forgot Password?</a>
+          <p id="errorMessage"></p>
+          <p id="resetMessage"></p>
           <div class="social-media">
             <a href="#" class="social-icon">
               <i class="fab fa-google"></i>
@@ -73,22 +89,22 @@
             </a>
           </div>
         </form>
-        <form action="#" class="sign-up-form">
+        <form id="signupForm" class="sign-up-form">
           <h2 class="title">Sign up</h2>
           <div class="input-field">
             <i class="fas fa-user"></i>
-            <input type="text" placeholder="Username" />
+            <input type="text" id="signup-name" placeholder="Name" required>
           </div>
           <div class="input-field">
             <i class="fas fa-envelope"></i>
-            <input type="email" placeholder="Email" />
+            <input type="email" id="signup-email" placeholder="Email" required>
           </div>
-          <div class="input-field">
+          <div class="input-field password-container">
             <i class="fas fa-lock"></i>
-            <input type="password" placeholder="Password" />
+            <input type="password" id="signup-password" placeholder="Password" required autocomplete="new-password">
           </div>
           <input type="submit" class="btn" value="Sign up" />
-          <!-- <p class="social-text">Or Sign up with social platforms</p> -->
+          <p id="signupMessage"></p>
           <div class="social-media">
             <a href="#" class="social-icon">
               <i class="fab fa-google"></i>
@@ -136,7 +152,128 @@
     </div>
   </div>
 
-  <script src="auth.js"></script>
-</body>
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyDyY5xK9I_wmyTA9qOxt6aoBOdjHrwhmAo",
+      authDomain: "contestify-a0417.firebaseapp.com",
+      databaseURL: "https://contestify-a0417-default-rtdb.firebaseio.com",
+      projectId: "contestify-a0417",
+      storageBucket: "contestify-a0417.firebasestorage.app",
+      messagingSenderId: "867321459671",
+      appId: "1:867321459671:web:23fd72da1ace7f392f1192",
+      measurementId: "G-3J19DMW4YL"
+    };
 
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const database = firebase.database();
+
+    // Login functionality
+    document.getElementById("loginForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+      const email = document.getElementById("login-email").value;
+      const password = document.getElementById("login-password").value;
+      const errorMessage = document.getElementById("errorMessage");
+
+      auth.signInWithEmailAndPassword(email, password)
+        .then((userCredential) => {
+          const user = userCredential.user;
+          database.ref('users/' + user.uid).once('value').then((snapshot) => {
+            const userData = snapshot.val();
+            localStorage.setItem('userName', userData.username);
+            localStorage.setItem('isLoggedIn', 'true');
+            window.location.href = "contest.html";
+          });
+        })
+        .catch((error) => {
+          if (error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password') {
+            errorMessage.textContent = "Incorrect email or password";
+          } else {
+            errorMessage.textContent = "Error: " + error.message;
+          }
+          errorMessage.className = "error";
+        });
+    });
+
+    // Signup functionality
+    document.getElementById("signupForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+      const name = document.getElementById("signup-name").value;
+      const email = document.getElementById("signup-email").value;
+      const password = document.getElementById("signup-password").value;
+      const signupMessage = document.getElementById("signupMessage");
+
+      auth.createUserWithEmailAndPassword(email, password)
+        .then((userCredential) => {
+          const user = userCredential.user;
+          return database.ref('users/' + user.uid).set({
+            username: name,
+            email: email,
+            createdAt: firebase.database.ServerValue.TIMESTAMP
+          });
+        })
+        .then(() => {
+          localStorage.setItem('userName', name);
+          localStorage.setItem('isLoggedIn', 'true');
+          signupMessage.textContent = "Account created successfully!";
+          signupMessage.className = "success";
+          setTimeout(() => { window.location.href = "contest.html"; }, 2000);
+        })
+        .catch((error) => {
+          console.error("Signup error:", error.code, error.message);
+          signupMessage.textContent = "Error: " + error.message;
+          signupMessage.className = "error";
+        });
+    });
+
+    // Forgot password functionality
+    document.getElementById("forgotPasswordLink").addEventListener("click", function(event) {
+      event.preventDefault();
+      const email = document.getElementById("login-email").value;
+      const resetMessage = document.getElementById("resetMessage");
+
+      if (!email) {
+        resetMessage.textContent = "Please enter your email first.";
+        resetMessage.className = "error";
+        return;
+      }
+
+      auth.sendPasswordResetEmail(email)
+        .then(() => {
+          resetMessage.textContent = "Password reset email sent! Check your inbox.";
+          resetMessage.className = "success";
+        })
+        .catch((error) => {
+          resetMessage.textContent = "Error: " + error.message;
+          resetMessage.className = "error";
+        });
+    });
+
+    // Toggle password visibility
+    const togglePassword = document.getElementById("togglePassword");
+    const passwordInput = document.getElementById("login-password");
+
+    if (togglePassword && passwordInput) {
+      togglePassword.addEventListener("click", function() {
+        const isPassword = passwordInput.type === "password";
+        passwordInput.type = isPassword ? "text" : "password";
+        this.classList.toggle("fa-eye");
+        this.classList.toggle("fa-eye-slash");
+      });
+    }
+
+    // Panel switching functionality (from original login-signup.html)
+    const sign_in_btn = document.querySelector("#sign-in-btn");
+    const sign_up_btn = document.querySelector("#sign-up-btn");
+    const container = document.querySelector(".container");
+
+    sign_up_btn.addEventListener("click", () => {
+      container.classList.add("sign-up-mode");
+    });
+
+    sign_in_btn.addEventListener("click", () => {
+      container.classList.remove("sign-up-mode");
+    });
+  </script>
+</body>
 </html>
