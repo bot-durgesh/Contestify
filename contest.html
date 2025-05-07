@@ -33,6 +33,25 @@
     <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-database-compat.js"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script>
+        emailjs.init("76OGRIpT0iq0rtULW"); // Replace with your EmailJS public key
+    </script>
+    <script>
+    const firebaseConfig = {
+        apiKey: "AIzaSyDyY5xK9I_wmyTA9qOxt6aoBOdjHrwhmAo",
+        authDomain: "contestify-a0417.firebaseapp.com",
+        databaseURL: "https://contestify-a0417-default-rtdb.firebaseio.com",
+        projectId: "contestify-a0417",
+        storageBucket: "contestify-a0417.firebasestorage.app",
+        messagingSenderId: "867321459671",
+        appId: "1:867321459671:web:23fd72da1ace7f392f1192",
+        measurementId: "G-3J19DMW4YL"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    </script>
+
     <!-- Styles -->
     <style>
         nav {
@@ -152,14 +171,15 @@
     </style>
 
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="contests.css">
+    
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="/assets/images/contestify/logo.png" type="image/x-icon">
 
     <title>Contests | Contestify | Productivity Tool for Competitive Programmers</title>
 
-    <script src="https://kit.fontawesome.com/1627768922.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
 </head>
 
 <body>
@@ -170,6 +190,7 @@
                 <span class="LogoName">Contestify</span>
             </div>
             <div class="nav-links">
+                <a href="index.html">Home</a>
                 <a href="contest.html">Contests</a>
                 <a href="notify.html">Notify</a>
                 <a href="#" id="logoutLink">Logout</a>
@@ -244,6 +265,8 @@
                                 </div>
                             </div>
                         </div>
+                        
+
 
                         <div class="border px-2 py-1 rounded-md border-[#464646] hover:border-[#363636] bg-[#404040] hover:bg-[#464646] hover:text-green-500 cursor-pointer"
                             onclick="window.location.reload();">
@@ -430,18 +453,7 @@
     </main>
 
     <script>
-        const firebaseConfig = {
-            apiKey: "AIzaSyDyY5xK9I_wmyTA9qOxt6aoBOdjHrwhmAo",
-            authDomain: "contestify-a0417.firebaseapp.com",
-            databaseURL: "https://contestify-a0417-default-rtdb.firebaseio.com",
-            projectId: "contestify-a0417",
-            storageBucket: "contestify-a0417.firebasestorage.app",
-            messagingSenderId: "867321459671",
-            appId: "1:867321459671:web:23fd72da1ace7f392f1192",
-            measurementId: "G-3J19DMW4YL"
-        };
 
-        firebase.initializeApp(firebaseConfig);
         const auth = firebase.auth();
 
         // Display welcome message and enforce login
@@ -470,6 +482,6 @@
     </script>
 
     <script src="script.js"></script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'92a694f39e2d7bc9',t:'MTc0MzY2MjUwMy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</body>
 
 </html>

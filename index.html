@@ -8,7 +8,27 @@
 
     <!-- Firebase SDK for Realtime Database -->
     <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-database-compat.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script>
+        emailjs.init("76OGRIpT0iq0rtULW"); // Replace with your EmailJS public key
+    </script>
+
+    <script>
+        const firebaseConfig = {
+          apiKey: "AIzaSyDyY5xK9I_wmyTA9qOxt6aoBOdjHrwhmAo",
+          authDomain: "contestify-a0417.firebaseapp.com",
+          databaseURL: "https://contestify-a0417-default-rtdb.firebaseio.com",
+          projectId: "contestify-a0417",
+          storageBucket: "contestify-a0417.appspot.com",
+          messagingSenderId: "867321459671",
+          appId: "1:867321459671:web:23fd72da1ace7f392f1192",
+          measurementId: "G-3J19DMW4YL"
+        };
+        firebase.initializeApp(firebaseConfig);
+      </script>
 
     <style>
         /* Your existing CSS remains unchanged */
@@ -862,20 +882,7 @@
     </section>
 
     <script>
-        // Firebase Configuration (same as contest.html)
-        const firebaseConfig = {
-            apiKey: "AIzaSyDyY5xK9I_wmyTA9qOxt6aoBOdjHrwhmAo",
-            authDomain: "contestify-a0417.firebaseapp.com",
-            databaseURL: "https://contestify-a0417-default-rtdb.firebaseio.com",
-            projectId: "contestify-a0417",
-            storageBucket: "contestify-a0417.firebasestorage.app",
-            messagingSenderId: "867321459671",
-            appId: "1:867321459671:web:23fd72da1ace7f392f1192",
-            measurementId: "G-3J19DMW4YL"
-        };
 
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
         const db = firebase.database();
 
         // Handle Contact Form Submission for Realtime Database
@@ -1030,7 +1037,10 @@
             positionFloatingCards();
         });
     </script>
-    <script>(function () { function c() { var b = a.contentDocument || a.contentWindow.document; if (b) { var d = b.createElement('script'); d.innerHTML = "window.__CF$cv$params={r:'92a69eb36814bf81',t:'MTc0MzY2MjkwMi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);"; b.getElementsByTagName('head')[0].appendChild(d) } } if (document.body) { var a = document.createElement('iframe'); a.height = 1; a.width = 1; a.style.position = 'absolute'; a.style.top = 0; a.style.left = 0; a.style.border = 'none'; a.style.visibility = 'hidden'; document.body.appendChild(a); if ('loading' !== document.readyState) c(); else if (window.addEventListener) document.addEventListener('DOMContentLoaded', c); else { var e = document.onreadystatechange || function () { }; document.onreadystatechange = function (b) { e(b); 'loading' !== document.readyState && (document.onreadystatechange = e, c()) } } } })();</script>
+
+<script src="script.js"></script>
+
+    
 </body>
 
 </html>

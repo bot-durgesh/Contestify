@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notification Preferences</title>
+
+    <!-- Firebase SDKs -->
+<script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-database-compat.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script>
+  emailjs.init("76OGRIpT0iq0rtULW"); // Your public key
+</script>
+
+
+<!-- Initialize Firebase (use your own config here) -->
+<script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyDyY5xK9I_wmyTA9qOxt6aoBOdjHrwhmAo",
+    authDomain: "contestify-a0417.firebaseapp.com",
+    databaseURL: "https://contestify-a0417-default-rtdb.firebaseio.com",
+    projectId: "contestify-a0417",
+    storageBucket: "contestify-a0417.appspot.com",
+    messagingSenderId: "867321459671",
+    appId: "1:867321459671:web:23fd72da1ace7f392f1192",
+    measurementId: "G-3J19DMW4YL"
+  };
+  firebase.initializeApp(firebaseConfig);
+</script>
+
+
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap");
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Poppins", sans-serif;
+            background: linear-gradient(270deg, #0f172a, #1e293b, #0b84b8e8);
+            background-size: 400% 400%;
+            animation: gradientAnimation 15s ease infinite;
+            color: #e0e0e0;
+            height: 100vh;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        @keyframes gradientAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.5rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #38bdf8;
+            animation: pulse 2s infinite;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            position: relative;
+            padding: 0.5rem 0;
+            font-weight: 500;
+        }
+
+        .nav-links a::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0%;
+            height: 2px;
+            background-color: #38bdf8;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .cta-button {
+            background: linear-gradient(90deg, #38bdf8, #818cf8);
+            color: #fff;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 10px rgba(56, 189, 248, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(56, 189, 248, 0.5);
+        }
+
+        .container {
+            padding: 30px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            margin-top: 5rem;
+        }
+
+        .section {
+            width: 90%;
+            max-width: 600px;
+            margin: 20px 0;
+            padding: 25px;
+            background-color: #1d1c1c;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+        }
+
+        .section h2 {
+            color: #38bdf8;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .section p {
+            margin: 15px 0;
+            line-height: 1.6;
+        }
+
+        .section label {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .section input[type="checkbox"] {
+            margin-right: 15px;
+            width: 20px;
+            height: 20px;
+            accent-color: #38bdf8;
+        }
+
+        .btn {
+            background: linear-gradient(90deg, #38bdf8, #818cf8);
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: center;
+            width: 100%;
+            margin-top: 20px;
+            font-size: 1em;
+            font-weight: 500;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .btn:hover {
+            background: linear-gradient(90deg, #818cf8, #38bdf8);
+            transform: scale(1.05);
+        }
+
+        .feedback {
+            margin-top: 20px;
+            color: #38bdf8;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .section,
+        .btn {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+
+        .summary {
+            width: 90%;
+            max-width: 600px;
+            margin: 20px 0;
+            padding: 25px;
+            background-color: #1d1c1c;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .summary h2 {
+            color: #38bdf8;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="logo">Contestify</div>
+        <div class="nav-links">
+            <a href="contest.html">Contests</a>
+            <a href="notify.html">Notify</a>
+            <a href="login/login-signup.html">Login</a>
+            <a href="login/login-signup.html">Sign Up</a>
+        </div>
+        <button class="cta-button">Get Started</button>
+    </nav>
+
+    <div class="container">
+        <div class="section">
+            <h2>Mail Notifications ✉️</h2>
+            <p>Receive coding contest notifications directly to your Mail.</p>
+            <label for="mail-checkbox">
+                <input type="checkbox" id="mail-checkbox" name="mail" onchange="updateSummary()">
+                Enable Mail Notifications
+            </label>
+            <button class="btn" id="saveBtn">Save Preference 🚀</button>
+            <p id="mail-feedback" class="feedback"></p>
+        </div>
+        <div class="section">
+            <h2>Notification Preferences</h2>
+            <label><input type="checkbox" name="platform" value="codeforces.com" /> Codeforces</label>
+            <label><input type="checkbox" name="platform" value="leetcode.com" /> LeetCode</label>
+            <label><input type="checkbox" name="platform" value="codechef.com" /> CodeChef</label>
+            <label><input type="checkbox" name="platform" value="atcoder.jp" /> AtCoder</label>
+            <label><input type="checkbox" name="platform" value="hackerearth.com" /> HackerEarth</label>
+            <label><input type="checkbox" name="platform" value="geeksforgeeks.org" /> GeeksforGeeks</label>
+            
+            <input type="email" id="userEmail" placeholder="Your Email" required style="margin-top: 1rem; padding: 0.5rem; width: 100%;" />
+            
+            <button class="btn" id="savePreferencesBtn">Save Preferences</button>
+            <div class="feedback" id="saveFeedback"></div>
+        </div>
+        
+
+
+        <div class="summary" id="summary">
+            <h2>Current Preferences</h2>
+            <p id="summary-text">No preferences selected. ✨</p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Initialize EmailJS
+            emailjs.init("76OGRIpT0iq0rtULW");
+    
+            // Add authentication check to save preferences button
+            document.getElementById("savePreferencesBtn").addEventListener("click", () => {
+                const user = firebase.auth().currentUser;
+                if (!user) {
+                    document.getElementById("saveFeedback").innerText = "Please login to save preferences";
+                    document.getElementById("saveFeedback").style.display = "block";
+                    return;
+                }
+    
+                const email = document.getElementById("userEmail").value;
+                const checkboxes = document.querySelectorAll('input[name="platform"]:checked');
+                const platforms = Array.from(checkboxes).map(cb => cb.value);
+    
+                if (!email || platforms.length === 0) {
+                    document.getElementById("saveFeedback").innerText = "Please fill out all fields";
+                    document.getElementById("saveFeedback").style.display = "block";
+                    return;
+                }
+    
+                const preferences = {
+                    email,
+                    platforms,
+                    notificationsEnabled: true
+                };
+    
+                firebase.database().ref("users/" + user.uid + "/preferences").set(preferences)
+                    .then(() => {
+                        document.getElementById("saveFeedback").innerText = "Preferences saved successfully!";
+                        document.getElementById("saveFeedback").style.display = "block";
+                    })
+                    .catch(err => {
+                        console.error("Failed to save preferences", err);
+                        document.getElementById("saveFeedback").innerText = "Error saving preferences.";
+                        document.getElementById("saveFeedback").style.display = "block";
+                    });
+            });
+    
+            function savePreference(type) {
+                let feedbackElement = document.getElementById(type.toLowerCase() + '-feedback');
+                let checkbox = document.getElementById(type.toLowerCase() + '-checkbox');
+    
+                if (checkbox.checked) {
+                    feedbackElement.textContent = type + ' notifications enabled.';
+                } else {
+                    feedbackElement.textContent = type + ' notifications disabled.';
+                }
+    
+                feedbackElement.animate([
+                    { opacity: 0, transform: 'translateY(-10px)' },
+                    { opacity: 1, transform: 'translateY(0)' }
+                ], {
+                    duration: 300,
+                    easing: 'ease-out'
+                });
+    
+                updateSummary();
+            }
+    
+            function updateSummary() {
+                let mailCheckbox = document.getElementById('mail-checkbox');
+                let calendarCheckbox = document.getElementById('calendar-checkbox');
+                let summaryText = document.getElementById('summary-text');
+    
+                let preferences = [];
+                if (mailCheckbox.checked) preferences.push('Mail Notifications');
+                if (calendarCheckbox.checked) preferences.push('Calendar Notifications');
+    
+                if (preferences.length > 0) {
+                    summaryText.textContent = 'Selected: ' + preferences.join(', ');
+                } else {
+                    summaryText.textContent = 'No preferences selected.';
+                }
+            }
+        });
+    </script>
+    <script>
+
+        const auth = firebase.auth();
+        const database = firebase.database();
+    
+        // Check authentication state
+        auth.onAuthStateChanged((user) => {
+            if (!user) {
+                // Redirect to login if not authenticated
+                window.location.href = "login-signup.html";
+            } else {
+                // Load existing preferences if any
+                database.ref('users/' + user.uid + '/preferences').once('value').then((snapshot) => {
+                    const preferences = snapshot.val();
+                    if (preferences) {
+                        // Set the email field
+                        document.getElementById('userEmail').value = preferences.email || '';
+                        
+                        // Check the platform checkboxes based on saved preferences
+                        document.querySelectorAll('input[name="platform"]').forEach(checkbox => {
+                            checkbox.checked = preferences.platforms.includes(checkbox.value);
+                        });
+                        
+                        // Check the notification checkboxes
+                        document.getElementById('mail-checkbox').checked = preferences.notificationsEnabled || false;
+                        document.getElementById('calendar-checkbox').checked = preferences.calendarEnabled || false;
+                        
+                        updateSummary();
+                    }
+                });
+            }
+        });
+    
+        // Save preferences function
+        document.getElementById("savePreferencesBtn").addEventListener("click", () => {
+            const user = auth.currentUser;
+            if (!user) {
+                showFeedback("Please login to save preferences", "error");
+                return;
+            }
+    
+            const email = document.getElementById("userEmail").value;
+            const checkboxes = document.querySelectorAll('input[name="platform"]:checked');
+            const platforms = Array.from(checkboxes).map(cb => cb.value);
+            const mailEnabled = document.getElementById('mail-checkbox').checked;
+            const calendarEnabled = document.getElementById('calendar-checkbox').checked;
+    
+            if (!email || platforms.length === 0) {
+                showFeedback("Please fill out all fields", "error");
+                return;
+            }
+    
+            const preferences = {
+                email,
+                platforms,
+                notificationsEnabled: mailEnabled,
+                calendarEnabled,
+                lastUpdated: firebase.database.ServerValue.TIMESTAMP
+            };
+    
+            database.ref("users/" + user.uid + "/preferences").set(preferences)
+                .then(() => {
+                    showFeedback("Preferences saved successfully!", "success");
+                })
+                .catch(err => {
+                    console.error("Failed to save preferences", err);
+                    showFeedback("Error saving preferences", "error");
+                });
+        });
+    
+        function showFeedback(message, type) {
+            const feedbackElement = document.getElementById("saveFeedback");
+            feedbackElement.textContent = message;
+            feedbackElement.className = "feedback " + type;
+            feedbackElement.style.display = "block";
+            
+            setTimeout(() => {
+                feedbackElement.style.display = "none";
+            }, 3000);
+        }
+    
+        function updateSummary() {
+            let mailCheckbox = document.getElementById('mail-checkbox');
+            let calendarCheckbox = document.getElementById('calendar-checkbox');
+            let summaryText = document.getElementById('summary-text');
+    
+            let preferences = [];
+            if (mailCheckbox.checked) preferences.push('Mail Notifications');
+            if (calendarCheckbox.checked) preferences.push('Calendar Notifications');
+    
+            if (preferences.length > 0) {
+                summaryText.textContent = 'Selected: ' + preferences.join(', ');
+            } else {
+                summaryText.textContent = 'No preferences selected.';
+            }
+        }
+    </script>
+    <script>
+        firebase.auth().onAuthStateChanged(user => {
+          if (user) {
+            document.querySelector('#saveBtn').addEventListener('click', () => {
+              const platforms = [...document.querySelectorAll('input[name="platform"]:checked')].map(e => e.value);
+              const mailEnabled = document.getElementById('mail-checkbox').checked;
+      
+              firebase.database().ref('users/' + user.uid + '/preferences').set({
+                mailNotifications: mailEnabled,
+                platforms: platforms
+              }).then(() => {
+                document.getElementById('mail-feedback').innerText = "Preferences saved successfully!";
+              });
+            });
+          } else {
+            document.getElementById('mail-feedback').innerText = "Please log in to save preferences.";
+          }
+        });
+      </script>
+      
+    
+    
+    <script src="script.js"></script>
+    
+    </body>
+    </html>
+    
