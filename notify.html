@@ -30,6 +30,52 @@
     measurementId: "G-3J19DMW4YL"
   };
   firebase.initializeApp(firebaseConfig);
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const auth = firebase.auth();
+        const database = firebase.database();
+
+        // Save email to Firebase when the user enters it
+        const emailInput = document.getElementById("userEmail");
+        emailInput.addEventListener("blur", () => {
+            const user = auth.currentUser;
+            if (!user) {
+                console.error("User not logged in.");
+                return;
+            }
+
+            const email = emailInput.value.trim();
+            if (!email) {
+                console.warn("Email field is empty.");
+                return;
+            }
+
+            // Save email to Firebase
+            database.ref("users/" + user.uid + "/preferences/email").set(email)
+                .then(() => {
+                    console.log("Email saved successfully:", email);
+                    showFeedback("Email saved successfully!", "success");
+                })
+                .catch((error) => {
+                    console.error("Failed to save email:", error);
+                    showFeedback("Error saving email.", "error");
+                });
+        });
+
+        // Feedback function
+        function showFeedback(message, type) {
+            const feedbackElement = document.getElementById("saveFeedback");
+            feedbackElement.textContent = message;
+            feedbackElement.className = "feedback " + type;
+            feedbackElement.style.display = "block";
+
+            setTimeout(() => {
+                feedbackElement.style.display = "none";
+            }, 3000);
+        }
+    });
+
+
 </script>
 
 
